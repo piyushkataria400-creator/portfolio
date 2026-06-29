@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush Kataria — Performance Marketing Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --white:      #FFFFFF;
+  --navy-text:  #0F172A;
+  --blue:       #2563EB;
+  --blue-light: #3B82F6;
+  --navy:       #1E3A8A;
+  --steel:      #64748B;
+  --light-bg:   #F8FAFC;
+  --card-bg:    #FFFFFF;
+  --border:     #E2E8F0;
+  --border-mid: #CBD5E1;
+  --text-muted: #475569;
+  --text-light: #94A3B8;
+  --blue-glow:  rgba(37,99,235,0.15);
+
+  --shadow-sm:  0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md:  0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.05);
+  --shadow-lg:  0 12px 40px rgba(15,23,42,0.1), 0 4px 16px rgba(15,23,42,0.06);
+  --shadow-xl:  0 24px 64px rgba(15,23,42,0.12), 0 8px 24px rgba(15,23,42,0.07);
+  --shadow-blue: 0 8px 32px rgba(37,99,235,0.25);
+
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--navy-text);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════ NAV ══════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  height: 70px;
+  display: flex; align-items: center;
+  padding: 0 max(5vw, 28px);
+  gap: 1.5rem;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 24px rgba(15,23,42,0.08); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--navy-text); text-decoration: none;
+  letter-spacing: -0.03em; flex-shrink: 0;
+}
+.nav-logo span { color: var(--blue); }
+.nav-spacer { flex: 1; }
+.nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+.nav-links a {
+  display: block; padding: 0.45rem 0.85rem;
+  font-family: var(--font-display); font-size: 0.875rem; font-weight: 500;
+  color: var(--steel); text-decoration: none;
+  border-radius: var(--radius-sm); transition: color 0.18s, background 0.18s;
+}
+.nav-links a:hover { color: var(--navy-text); background: var(--light-bg); }
+.btn-nav {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--blue); color: var(--white) !important;
+  padding: 0.55rem 1.3rem !important;
+  border-radius: var(--radius-sm); font-weight: 700 !important; font-size: 0.845rem !important;
+  transition: all 0.2s !important; white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+}
+.btn-nav:hover { background: var(--navy) !important; transform: translateY(-1px) !important; box-shadow: 0 4px 16px rgba(37,99,235,0.4) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 22px; height: 2px; background: var(--navy-text); display: block; border-radius: 2px; transition: 0.25s; }
+
+/* ══════════════════════ BUTTONS ══════════════════════ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--blue); color: var(--white);
+  padding: 0.85rem 1.85rem; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 700;
+  text-decoration: none; border: 2px solid var(--blue);
+  cursor: pointer; transition: all 0.2s; letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+}
+.btn-primary:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--navy-text);
+  padding: 0.85rem 1.85rem; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 600;
+  text-decoration: none; border: 2px solid var(--border-mid);
+  cursor: pointer; transition: all 0.2s; letter-spacing: -0.01em;
+}
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); background: #EFF6FF; transform: translateY(-2px); }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--white); color: var(--navy);
+  padding: 0.9rem 2rem; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 700;
+  text-decoration: none; border: 2px solid rgba(255,255,255,0.9);
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.btn-ghost-white {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);
+  padding: 0.9rem 2rem; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 600;
+  text-decoration: none; border: 2px solid rgba(255,255,255,0.25);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-ghost-white:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+/* ══════════════════════ TYPOGRAPHY ══════════════════════ */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue);
+  margin-bottom: 1rem;
+}
+.eyebrow::before {
+  content: ''; display: inline-block; width: 20px; height: 2px;
+  background: var(--blue); border-radius: 2px; flex-shrink: 0;
+}
+.section-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.95rem, 3.2vw, 3rem); font-weight: 800;
+  line-height: 1.12; letter-spacing: -0.035em; color: var(--navy-text);
+  margin-bottom: 1rem;
+}
+.section-sub { font-size: 1.05rem; color: var(--text-muted); line-height: 1.78; max-width: 560px; }
+
+/* ══════════════════════ HERO ══════════════════════ */
+.hero {
+  padding-top: 70px; min-height: 100vh;
+  display: flex; flex-direction: column;
+  background: var(--white); position: relative; overflow: hidden;
+}
+/* Dot grid */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.5; pointer-events: none; z-index: 0;
+}
+/* Gradient fade over dots on left side */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(255,255,255,0.98) 35%, rgba(255,255,255,0.4) 65%, transparent 100%);
+  pointer-events: none; z-index: 1;
+}
+/* Blue glow blob */
+.hero-glow {
+  position: absolute; top: -100px; right: 30%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 1;
+}
+
+.hero-switcher {
+  position: relative; z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.95);
+  display: flex; padding: 0 max(5vw, 28px);
+}
+.switcher-tab {
+  padding: 0.9rem 1.6rem;
+  font-family: var(--font-display); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.03em; color: var(--steel);
+  background: none; border: none; border-bottom: 3px solid transparent;
+  margin-bottom: -1px; cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex; align-items: center; gap: 0.55rem;
+}
+.switcher-tab .tab-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border-mid); flex-shrink: 0; transition: background 0.2s;
+}
+.switcher-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+.switcher-tab.active .tab-dot { background: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+.switcher-tab:hover:not(.active) { color: var(--navy-text); }
+
+.hero-main {
+  flex: 1; position: relative; z-index: 5;
+  display: grid; grid-template-columns: 55fr 45fr;
+  min-height: calc(100vh - 70px - 54px);
+}
+.hero-content {
+  padding: 5vw max(4vw, 24px) 4rem max(5vw, 52px);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: #EFF6FF; border: 1px solid #BFDBFE; color: var(--blue);
+  border-radius: 100px; padding: 0.4rem 1rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
+  margin-bottom: 2rem; width: fit-content;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+  50% { opacity: 0.6; transform: scale(0.8); box-shadow: 0 0 0 4px rgba(37,99,235,0); }
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.8vw, 4.2rem); font-weight: 800;
+  line-height: 1.07; letter-spacing: -0.04em; color: var(--navy-text);
+  margin-bottom: 1.6rem;
+}
+.hero-headline .accent { color: var(--blue); }
+.hero-headline .line-block { display: block; }
+.hero-sub {
+  font-size: 1.08rem; color: var(--text-muted); line-height: 1.78;
+  margin-bottom: 2.75rem; max-width: 500px;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.hero-proof {
+  display: flex; gap: 2.5rem;
+  padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.proof-item {}
+.proof-num {
+  font-family: var(--font-display); font-size: 1.9rem; font-weight: 800;
+  color: var(--navy-text); line-height: 1; letter-spacing: -0.05em; margin-bottom: 0.25rem;
+}
+.proof-num .accent { color: var(--blue); }
+.proof-label { font-size: 0.75rem; font-weight: 500; color: var(--text-light); line-height: 1.4; }
+
+/* Hero visual panel */
+.hero-visual {
+  position: relative; overflow: visible;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 2rem 2rem 1rem;
+}
+.hero-img-wrap {
+  position: relative; width: 100%; height: calc(100vh - 70px - 54px - 4rem);
+  max-height: 720px; min-height: 480px;
+}
+.hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; border-radius: var(--radius-xl);
+  transition: opacity 0.6s ease;
+  box-shadow: var(--shadow-xl);
+}
+.hero-img.hidden { opacity: 0; }
+.hero-img.visible { opacity: 1; }
+.hero-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(30,58,138,0.15) 0%, rgba(15,23,42,0.2) 100%);
+  border-radius: var(--radius-xl); z-index: 1;
+}
+/* Floating cards on hero image */
+.hero-float-card {
+  position: absolute; z-index: 3;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.8);
+  animation: float 4s ease-in-out infinite;
+}
+.hero-float-card:nth-child(3) { animation-delay: -2s; }
+.hero-float-card:nth-child(4) { animation-delay: -1s; animation-duration: 5s; }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-card-top {
+  bottom: 2.5rem; left: -2rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.float-card-mid {
+  top: 2.5rem; right: -1.5rem;
+  min-width: 160px;
+}
+.fcard-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.fcard-icon.blue { background: #EFF6FF; }
+.fcard-icon.green { background: #F0FDF4; }
+.fcard-label { font-size: 0.65rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
+.fcard-value { font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: var(--navy-text); letter-spacing: -0.03em; line-height: 1.2; }
+.fcard-value .up { color: #16A34A; font-size: 0.75rem; font-weight: 700; }
+.fcard-mini-label { font-size: 0.63rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.3rem; }
+.fcard-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.fcard-metric { font-family: var(--font-display); font-size: 0.9rem; font-weight: 800; color: var(--navy-text); }
+.fcard-trend {
+  font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.45rem;
+  border-radius: 100px; background: #F0FDF4; color: #16A34A;
+}
+.fcard-bar-wrap { margin-top: 0.5rem; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.fcard-bar { height: 100%; background: linear-gradient(90deg, var(--blue), #60A5FA); border-radius: 2px; }
+.hero-img-tag {
+  position: absolute; z-index: 3; top: 1.25rem; left: 1.25rem;
+  background: rgba(15,23,42,0.75); backdrop-filter: blur(8px);
+  padding: 0.4rem 0.875rem; border-radius: 100px;
+  font-size: 0.67rem; font-weight: 700; color: var(--white);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ══════════════════════ TICKER ══════════════════════ */
+.clients-bar {
+  background: var(--light-bg);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 1.1rem 0; display: flex; align-items: center; overflow: hidden; gap: 0;
+}
+.clients-label-wrap {
+  padding: 0 2rem; flex-shrink: 0;
+  display: flex; align-items: center; gap: 0.75rem;
+  border-right: 1px solid var(--border);
+  margin-right: 2rem;
+}
+.clients-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
+.clients-scroll-wrap { overflow: hidden; flex: 1; }
+.clients-list { display: flex; gap: 3rem; width: max-content; animation: ticker 30s linear infinite; }
+.clients-list:hover { animation-play-state: paused; }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.client-chip {
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 600;
+  color: var(--steel); display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+}
+.client-chip-icon { font-size: 0.95rem; }
+
+/* ══════════════════════ SECTION BASE ══════════════════════ */
+.section { padding: 6.5rem max(5vw, 48px); }
+.section-sm { padding: 4.5rem max(5vw, 48px); }
+.section-white { background: var(--white); }
+.section-light { background: var(--light-bg); }
+.section-navy { background: var(--navy); }
+.section-header { margin-bottom: 3.5rem; }
+.section-header-split {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: 3.5rem;
+}
+
+/* ══════════════════════ ABOUT ══════════════════════ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+.about-photo-wrap { position: relative; }
+.about-photo {
+  width: 100%; height: 540px; object-fit: cover;
+  border-radius: var(--radius-xl); display: block; box-shadow: var(--shadow-xl);
+}
+.about-accent-line {
+  position: absolute; top: 2.5rem; left: -4px; width: 4px; height: 80px;
+  background: linear-gradient(to bottom, var(--blue), transparent); border-radius: 2px;
+}
+.about-float-stat {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem; box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border);
+}
+.about-float-stat-num {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+  color: var(--blue); letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.3rem;
+}
+.about-float-stat-label { font-size: 0.74rem; font-weight: 600; color: var(--steel); line-height: 1.35; max-width: 140px; }
+.about-float-mini {
+  position: absolute; top: 2rem; right: -2rem;
+  background: var(--navy); border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.about-float-mini-icon { font-size: 1.1rem; }
+.about-float-mini-text { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.9); line-height: 1.35; }
+.about-text p { font-size: 0.975rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 1.1rem; }
+.about-text p strong { color: var(--navy-text); font-weight: 600; }
+.usp-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+.usp-item {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.9rem 1rem; background: var(--light-bg);
+  border-radius: var(--radius-sm); border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.usp-item:hover { border-color: #BFDBFE; box-shadow: 0 2px 12px rgba(37,99,235,0.08); }
+.usp-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.usp-text { font-size: 0.82rem; font-weight: 600; color: var(--navy-text); line-height: 1.4; }
+
+/* ══════════════════════ INDUSTRIES ══════════════════════ */
+.industry-tabs-bar {
+  display: flex; gap: 0.4rem; background: var(--light-bg);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 0.3rem; margin-bottom: 3rem; width: fit-content;
+}
+.ind-tab-btn {
+  padding: 0.65rem 1.5rem; border-radius: 9px;
+  font-family: var(--font-display); font-size: 0.84rem; font-weight: 600;
+  background: none; border: none; cursor: pointer;
+  color: var(--steel); transition: all 0.2s;
+}
+.ind-tab-btn.active { background: var(--white); color: var(--blue); box-shadow: var(--shadow-md); }
+.ind-tab-btn:hover:not(.active) { color: var(--navy-text); }
+.ind-panel { display: none; }
+.ind-panel.active { display: grid; grid-template-columns: 5fr 4fr; gap: 4vw; align-items: start; }
+.ind-images-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+.ind-img-main {
+  grid-column: 1 / -1; height: 280px; width: 100%; object-fit: cover;
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  transition: transform 0.4s ease;
+}
+.ind-img-main:hover { transform: scale(1.01); }
+.ind-img-sub {
+  height: 165px; width: 100%; object-fit: cover;
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
+  transition: transform 0.4s ease;
+}
+.ind-img-sub:hover { transform: scale(1.02); }
+.ind-headline {
+  font-family: var(--font-display); font-size: 1.65rem; font-weight: 800;
+  color: var(--navy-text); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem;
+}
+.ind-desc { font-size: 0.925rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.75rem; }
+.ind-clients-list { list-style: none; }
+.ind-clients-list li {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0; font-size: 0.875rem; font-weight: 500; color: var(--navy-text);
+  border-bottom: 1px solid var(--border);
+}
+.ind-clients-list li:last-child { border-bottom: none; }
+.ind-clients-list li::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue); flex-shrink: 0;
+}
+
+/* ══════════════════════ SERVICES ══════════════════════ */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.service-card {
+  background: var(--card-bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem 1.75rem;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+}
+.service-card:hover { border-color: #BFDBFE; box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-icon-wrap {
+  width: 48px; height: 48px; background: #EFF6FF;
+  border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem; font-size: 1.25rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.service-card:hover .service-icon-wrap { background: var(--blue); transform: scale(1.05); }
+.service-title {
+  font-family: var(--font-display); font-size: 1.02rem; font-weight: 700;
+  color: var(--navy-text); margin-bottom: 0.65rem; letter-spacing: -0.02em;
+}
+.service-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
+.service-tag {
+  display: inline-block; margin-top: 1.25rem;
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); background: #EFF6FF; padding: 0.25rem 0.65rem; border-radius: 100px;
+}
+
+/* ══════════════════════ PROCESS ══════════════════════ */
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.process-step {
+  padding: 2.25rem 1.75rem; background: var(--white);
+  border-right: 1px solid var(--border); position: relative;
+  transition: background 0.2s;
+}
+.process-step:last-child { border-right: none; }
+.process-step:hover { background: #F0F7FF; }
+.step-top-bar {
+  position: absolute; top: 0; left: 1.75rem; right: 1.75rem; height: 3px;
+  background: linear-gradient(90deg, var(--blue), transparent);
+  opacity: 0; transition: opacity 0.2s;
+}
+.process-step:hover .step-top-bar { opacity: 1; }
+.step-num {
+  font-family: var(--font-display);
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--blue); text-transform: uppercase; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.step-num::before {
+  content: attr(data-n); width: 24px; height: 24px; border-radius: 50%;
+  background: var(--blue); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; font-weight: 800; flex-shrink: 0;
+}
+.step-title {
+  font-family: var(--font-display); font-size: 0.97rem; font-weight: 700;
+  color: var(--navy-text); margin-bottom: 0.65rem; letter-spacing: -0.02em;
+}
+.step-desc { font-size: 0.83rem; color: var(--steel); line-height: 1.65; }
+
+/* ══════════════════════ DIRECT / VS ══════════════════════ */
+.direct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+.vs-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);
+}
+.vs-header-row { display: grid; grid-template-columns: 1fr 1fr; }
+.vs-col-head {
+  padding: 1rem 1.5rem; font-family: var(--font-display);
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.vs-col-agency { background: #FEF2F2; color: #DC2626; border-bottom: 1px solid #FECACA; }
+.vs-col-pk { background: #EFF6FF; color: var(--blue); border-bottom: 1px solid #BFDBFE; border-left: 1px solid var(--border); }
+.vs-body-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+.vs-body-row:last-child { border-bottom: none; }
+.vs-cell {
+  padding: 0.9rem 1.5rem; font-size: 0.84rem; font-weight: 500; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.65rem; line-height: 1.4;
+}
+.vs-cell.pk-cell { border-left: 1px solid var(--border); color: var(--navy-text); background: #FAFEFF; }
+.vs-x { color: #DC2626; font-size: 0.8rem; flex-shrink: 0; font-weight: 700; }
+.vs-check { color: #16A34A; font-size: 0.8rem; flex-shrink: 0; font-weight: 700; }
+.direct-photo-wrap { position: relative; }
+.direct-photo {
+  width: 100%; height: 500px; object-fit: cover;
+  border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);
+}
+.direct-photo-badge {
+  position: absolute; top: -1.25rem; right: -1.25rem;
+  background: var(--blue); border-radius: 50%;
+  width: 128px; height: 128px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 0.75rem;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.4);
+}
+.direct-badge-main { font-family: var(--font-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.75); line-height: 1.3; }
+.direct-badge-name { font-family: var(--font-display); font-size: 0.82rem; font-weight: 800; color: var(--white); margin-top: 0.2rem; line-height: 1.2; }
+.direct-text p { font-size: 0.96rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 1rem; }
+
+/* ══════════════════════ TESTIMONIALS ══════════════════════ */
+.testimonials-section {
+  background: var(--navy-text); padding: 6.5rem max(5vw, 48px);
+  position: relative; overflow: hidden;
+}
+.testimonials-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px; pointer-events: none;
+}
+.testimonials-section .eyebrow { color: #93C5FD; }
+.testimonials-section .eyebrow::before { background: #93C5FD; }
+.testimonials-section .section-headline { color: var(--white); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+.testimonial-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 2rem;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.testimonial-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+.testimonial-stars { color: #FCD34D; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1.1rem; }
+.testimonial-quote { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.78; margin-bottom: 1.5rem; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+.testimonial-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 800;
+  color: var(--white); flex-shrink: 0;
+}
+.testimonial-name { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--white); }
+.testimonial-role { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.1rem; }
+.testimonial-industry-badge {
+  margin-left: auto; font-size: 0.63rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #93C5FD; background: rgba(147,197,253,0.12);
+  padding: 0.25rem 0.6rem; border-radius: 100px; border: 1px solid rgba(147,197,253,0.2);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════ GUARANTEE ══════════════════════ */
+.guarantee-wrap {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg);
+}
+.guarantee-header {
+  background: linear-gradient(130deg, var(--navy) 0%, #1A336E 100%);
+  padding: 2.75rem 3rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.guarantee-header::before {
+  content: ''; position: absolute; right: -80px; top: -80px;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); pointer-events: none;
+}
+.guarantee-header-text h3 {
+  font-family: var(--font-display); font-size: 1.55rem; font-weight: 800;
+  color: var(--white); letter-spacing: -0.03em; margin-bottom: 0.5rem;
+}
+.guarantee-header-text p { font-size: 0.88rem; color: rgba(255,255,255,0.6); }
+.guarantee-badge-wrap {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md); padding: 1.1rem 1.5rem; text-align: center; white-space: nowrap;
+}
+.guarantee-badge-icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+.guarantee-badge-text { font-family: var(--font-display); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+.guarantee-body { padding: 2.75rem 3rem; }
+.guarantee-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 1rem; }
+.guarantee-commit {
+  background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 4px solid var(--blue);
+  border-radius: var(--radius-sm); padding: 1.6rem 1.85rem; margin: 2rem 0;
+}
+.guarantee-commit p { font-size: 0.94rem; color: var(--navy-text); font-weight: 500; line-height: 1.78; margin-bottom: 0; }
+.guarantee-commit strong { font-weight: 700; color: var(--navy); }
+.guarantee-disclaimer-box {
+  background: var(--light-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; margin-top: 1.75rem;
+}
+.guarantee-disclaimer-box p { font-size: 0.73rem; color: var(--text-light); line-height: 1.65; margin-bottom: 0; }
+.guarantee-disclaimer-box strong { color: var(--steel); font-weight: 600; }
+
+/* ══════════════════════ RESULTS ══════════════════════ */
+.results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.result-card {
+  background: var(--card-bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.85rem;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.result-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+}
+.result-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: #BFDBFE; }
+.result-card:hover::before { transform: scaleX(1); }
+.result-industry-tag {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 1.3rem; display: flex; align-items: center; gap: 0.4rem;
+}
+.result-num {
+  font-family: var(--font-display); font-size: 2.8rem; font-weight: 800;
+  color: var(--navy-text); letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.2rem;
+}
+.result-num-sub { font-size: 0.77rem; color: var(--steel); margin-bottom: 1.3rem; font-weight: 500; }
+.result-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.68; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+.result-platform {
+  display: inline-block; margin-top: 1rem;
+  background: var(--light-bg); color: var(--steel);
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 100px; border: 1px solid var(--border);
+}
+
+/* ══════════════════════ CTA SECTION ══════════════════════ */
+.cta-section {
+  background: linear-gradient(130deg, var(--navy) 0%, #152B66 100%);
+  padding: 6.5rem max(5vw, 48px); position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 28px 28px; pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute;
+  bottom: -120px; right: -120px; width: 500px; height: 500px; border-radius: 50%;
+  background: rgba(37,99,235,0.2); pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
+.cta-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800;
+  color: var(--white); letter-spacing: -0.035em; line-height: 1.12; margin-bottom: 0.875rem;
+}
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,0.62); line-height: 1.75; max-width: 540px; }
+.cta-actions { display: flex; flex-direction: column; gap: 0.875rem; align-items: flex-end; }
+.cta-note { font-size: 0.72rem; color: rgba(255,255,255,0.38); text-align: right; line-height: 1.5; }
+
+/* ══════════════════════ FOOTER ══════════════════════ */
+footer { background: var(--navy-text); padding: 4.5rem max(5vw, 48px) 0; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3.5rem; }
+.footer-logo {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+  color: var(--white); text-decoration: none; letter-spacing: -0.03em;
+  display: block; margin-bottom: 0.875rem;
+}
+.footer-logo span { color: #93C5FD; }
+.footer-brand-text { font-size: 0.82rem; color: rgba(255,255,255,0.38); line-height: 1.72; }
+.footer-col-head {
+  font-family: var(--font-display); font-size: 0.67rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.1rem;
+}
+.footer-col-links { list-style: none; }
+.footer-col-links li { margin-bottom: 0.55rem; }
+.footer-col-links a {
+  font-size: 0.83rem; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.18s;
+}
+.footer-col-links a:hover { color: rgba(255,255,255,0.9); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+.footer-geo { display: flex; gap: 0.5rem; }
+.footer-geo-chip {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.22); padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 100px;
+}
+
+/* ══════════════════════ MODAL ══════════════════════ */
+.modal-bg {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(15,23,42,0.72); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 1.25rem;
+}
+.modal-bg.open { display: flex; }
+.modal-box {
+  background: var(--white); border-radius: var(--radius-xl); padding: 2.75rem;
+  max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto;
+  position: relative; box-shadow: var(--shadow-xl);
+  animation: modalIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  background: var(--light-bg); border: 1px solid var(--border); border-radius: 50%;
+  width: 34px; height: 34px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--steel); transition: all 0.18s;
+}
+.modal-close:hover { background: var(--border); color: var(--navy-text); }
+.modal-title { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; color: var(--navy-text); letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+.modal-sub { font-size: 0.85rem; color: var(--steel); margin-bottom: 1.75rem; line-height: 1.6; }
+.form-group { margin-bottom: 1rem; }
+.form-label { display: block; font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy-text); margin-bottom: 0.45rem; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 0.72rem 1rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 0.88rem; color: var(--navy-text);
+  background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.form-textarea { min-height: 85px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.modal-submit { width: 100%; justify-content: center; padding: 0.95rem; font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* ══════════════════════ ANIMATIONS ══════════════════════ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.06s; }
+.reveal-d2 { transition-delay: 0.13s; }
+.reveal-d3 { transition-delay: 0.2s; }
+
+/* Number counter */
+.count-up { display: inline; }
+
+/* ══════════════════════ MOBILE NAV ══════════════════════ */
+#mobileNav {
+  display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 250;
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 1.25rem max(5vw, 24px) 1.5rem; box-shadow: var(--shadow-lg);
+}
+#mobileNav.open { display: block; }
+#mobileNav ul { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+#mobileNav a {
+  display: block; padding: 0.65rem 0.75rem;
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 500;
+  color: var(--navy-text); text-decoration: none; border-radius: var(--radius-sm); transition: background 0.15s;
+}
+#mobileNav a:hover { background: var(--light-bg); }
+#mobileNav .nav-cta-mobile {
+  display: block; margin-top: 0.875rem; text-align: center;
+  background: var(--blue); color: var(--white) !important;
+  padding: 0.8rem !important; border-radius: var(--radius-sm); font-weight: 700 !important;
+  box-shadow: var(--shadow-blue);
+}
+
+/* ══════════════════════ RESPONSIVE ══════════════════════ */
+@media (max-width: 1100px) {
+  .hero-main { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .results-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-step { border-bottom: 1px solid var(--border); }
+  .process-step:nth-child(2) { border-right: none; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; } .hamburger { display: flex; }
+  .hero-main { grid-template-columns: 1fr; }
+  .hero-visual { min-height: 360px; padding: 1.25rem; }
+  .hero-img-wrap { height: 360px; max-height: none; min-height: 0; }
+  .hero-content { padding: 2.5rem max(5vw, 24px); }
+  .about-grid, .direct-grid { grid-template-columns: 1fr; }
+  .about-photo { height: 420px; }
+  .about-float-mini { display: none; }
+  .about-float-stat { right: 1rem; }
+  .direct-photo-wrap { display: none; }
+  .ind-panel.active { grid-template-columns: 1fr; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .cta-actions { align-items: flex-start; }
+  .cta-note { text-align: left; }
+  .float-card-top { left: 0.75rem; bottom: 1rem; }
+  .float-card-mid { right: 0.75rem; top: 1rem; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hero-proof { gap: 1.5rem; flex-wrap: wrap; }
+  .services-grid, .results-grid { grid-template-columns: 1fr; }
+  .usp-list { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step { border-right: none; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.75rem; }
+  .guarantee-header, .guarantee-body { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { justify-content: center; }
+  .clients-label-wrap { display: none; }
+  .ind-img-main { height: 200px; }
+  .ind-img-sub { height: 140px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .hero-float-card { animation: none; }
+  .hero-badge-dot { animation: none; }
+  .clients-list { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Piyush <span>Kataria</span></a>
+  <div class="nav-spacer"></div>
+  <ul class="nav-links">
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-direct">Why Direct</a></li>
+    <li><a href="#guarantee">Guarantee</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#" class="btn-nav" onclick="openModal(event)">Book a Strategy Call</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div id="mobileNav">
+  <ul>
+    <li><a href="#industries" onclick="closeMobileNav()">Industries</a></li>
+    <li><a href="#services" onclick="closeMobileNav()">Services</a></li>
+    <li><a href="#why-direct" onclick="closeMobileNav()">Why Direct</a></li>
+    <li><a href="#guarantee" onclick="closeMobileNav()">Guarantee</a></li>
+    <li><a href="#results" onclick="closeMobileNav()">Results</a></li>
+    <li><a href="#" class="nav-cta-mobile" onclick="openModal(event);closeMobileNav()">Book a Strategy Call</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+
+  <div class="hero-switcher">
+    <button class="switcher-tab active" onclick="switchHero('construction',this)">
+      <span class="tab-dot"></span> Construction &amp; Manufacturing
+    </button>
+    <button class="switcher-tab" onclick="switchHero('healthcare',this)">
+      <span class="tab-dot"></span> Dental &amp; Healthcare
+    </button>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Independent Performance Marketing Consultant
+      </div>
+      <h1 class="hero-headline" id="heroH">
+        <span class="line-block">Qualified Leads.</span>
+        <span class="line-block">Predictable Growth.</span>
+        <span class="line-block accent">Direct Consultant Support.</span>
+      </h1>
+      <p class="hero-sub" id="heroSub">
+        I help construction companies, HVAC businesses, manufacturers, and dental clinics generate qualified enquiries through Meta Ads, Google Ads, and conversion-focused lead generation systems. You work directly with me — from strategy to optimisation.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" onclick="openModal(event)">Book a Strategy Call &rarr;</a>
+        <a href="#results" class="btn-secondary">View Results</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <div class="proof-num"><span class="count-up" data-target="8">0</span><span class="accent">+</span></div>
+          <div class="proof-label">Years paid media<br>experience</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">£<span class="count-up" data-target="2" data-prefix="">0</span>M<span class="accent">+</span></div>
+          <div class="proof-label">Ad spend<br>managed</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num"><span class="count-up" data-target="2">0</span></div>
+          <div class="proof-label">Industry<br>specialisms</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num"><span class="count-up" data-target="0">0</span></div>
+          <div class="proof-label">Agency layers<br>or middlemen</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img id="heroImgC" class="hero-img visible"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&auto=format&fit=crop&q=80"
+          alt="Commercial construction site">
+        <img id="heroImgH" class="hero-img hidden"
+          src="https://images.unsplash.com/photo-1588776814546-1ffedbe47adc?w=1000&auto=format&fit=crop&q=80"
+          alt="Modern dental clinic">
+        <div class="hero-img-overlay"></div>
+        <div class="hero-img-tag" id="heroImgTag">Construction &amp; Industrial</div>
+
+        <!-- Floating card 1 — CPL metric -->
+        <div class="hero-float-card float-card-top">
+          <div class="fcard-icon green">📉</div>
+          <div>
+            <div class="fcard-label">Cost Per Lead</div>
+            <div class="fcard-value">£38 <span class="up">↓ 67%</span></div>
+          </div>
+        </div>
+
+        <!-- Floating card 2 — Enquiries -->
+        <div class="hero-float-card float-card-mid">
+          <div class="fcard-mini-label">Monthly Enquiries</div>
+          <div class="fcard-row">
+            <div class="fcard-metric">142</div>
+            <div class="fcard-trend">↑ 3.2×</div>
+          </div>
+          <div class="fcard-bar-wrap"><div class="fcard-bar" style="width:78%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="clients-bar">
+  <div class="clients-label-wrap">
+    <span class="clients-label">Serving clients across</span>
+  </div>
+  <div class="clients-scroll-wrap">
+    <div class="clients-list">
+      <span class="client-chip"><span class="client-chip-icon">🇬🇧</span> United Kingdom</span>
+      <span class="client-chip"><span class="client-chip-icon">🇺🇸</span> United States</span>
+      <span class="client-chip"><span class="client-chip-icon">🇦🇺</span> Australia</span>
+      <span class="client-chip"><span class="client-chip-icon">🇩🇪</span> Germany</span>
+      <span class="client-chip"><span class="client-chip-icon">🇳🇱</span> Netherlands</span>
+      <span class="client-chip"><span class="client-chip-icon">🏗</span> HVAC Contractors</span>
+      <span class="client-chip"><span class="client-chip-icon">🏭</span> Manufacturers</span>
+      <span class="client-chip"><span class="client-chip-icon">🦷</span> Dental Clinics</span>
+      <span class="client-chip"><span class="client-chip-icon">🏢</span> Commercial Construction</span>
+      <span class="client-chip"><span class="client-chip-icon">⚕️</span> Healthcare Practices</span>
+      <span class="client-chip"><span class="client-chip-icon">🇬🇧</span> United Kingdom</span>
+      <span class="client-chip"><span class="client-chip-icon">🇺🇸</span> United States</span>
+      <span class="client-chip"><span class="client-chip-icon">🇦🇺</span> Australia</span>
+      <span class="client-chip"><span class="client-chip-icon">🇩🇪</span> Germany</span>
+      <span class="client-chip"><span class="client-chip-icon">🇳🇱</span> Netherlands</span>
+      <span class="client-chip"><span class="client-chip-icon">🏗</span> HVAC Contractors</span>
+      <span class="client-chip"><span class="client-chip-icon">🏭</span> Manufacturers</span>
+      <span class="client-chip"><span class="client-chip-icon">🦷</span> Dental Clinics</span>
+      <span class="client-chip"><span class="client-chip-icon">🏢</span> Commercial Construction</span>
+      <span class="client-chip"><span class="client-chip-icon">⚕️</span> Healthcare Practices</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-white" id="about">
+  <div class="about-grid">
+    <div class="about-photo-wrap reveal">
+      <div class="about-accent-line"></div>
+      <img class="about-photo"
+        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&auto=format&fit=crop&q=80"
+        alt="Performance marketing consultant - professional">
+      <div class="about-float-mini">
+        <span class="about-float-mini-icon">🎯</span>
+        <div class="about-float-mini-text">Zero agency<br>middlemen</div>
+      </div>
+      <div class="about-float-stat">
+        <div class="about-float-stat-num">100%</div>
+        <div class="about-float-stat-label">Every campaign personally managed by Piyush</div>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="eyebrow">About Piyush Kataria</div>
+      <h2 class="section-headline">A Specialist Who Understands Your Industry</h2>
+      <p class="section-sub" style="margin-bottom:1.75rem;">I don't serve everyone. I focus exclusively on Construction businesses and Dental Practices — because deep specialisation produces better results than generalist agency thinking.</p>
+      <div class="about-text">
+        <p>Every campaign I run is built around a singular objective: generating <strong>qualified business enquiries</strong> from people who have genuine interest in your product or service. Not impressions. Not clicks. Real enquiries from real buyers.</p>
+        <p>Whether you're an HVAC contractor looking to fill your pipeline, a construction firm targeting project developers, or a dental clinic scaling implant and cosmetic bookings — I design paid media systems that align with how your sales process actually works.</p>
+      </div>
+      <div class="usp-list">
+        <div class="usp-item"><span class="usp-icon">🎯</span><div class="usp-text">No account managers or agency layers</div></div>
+        <div class="usp-item"><span class="usp-icon">📊</span><div class="usp-text">Qualified enquiries, not vanity metrics</div></div>
+        <div class="usp-item"><span class="usp-icon">🔬</span><div class="usp-text">Industry-specific strategy, not templates</div></div>
+        <div class="usp-item"><span class="usp-icon">🤝</span><div class="usp-text">Direct access to Piyush, every time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section section-light" id="industries">
+  <div class="section-header reveal">
+    <div class="eyebrow">Specialisms</div>
+    <h2 class="section-headline">Industries I Serve</h2>
+    <p class="section-sub">Deep expertise in two sectors. I've invested in understanding the commercial realities of your world — not a generalist who drifts across verticals.</p>
+  </div>
+  <div class="industry-tabs-bar reveal">
+    <button class="ind-tab-btn active" onclick="switchIndustry('construction',this)">🏗 Construction &amp; Manufacturing</button>
+    <button class="ind-tab-btn" onclick="switchIndustry('healthcare',this)">🦷 Dental &amp; Healthcare</button>
+  </div>
+
+  <div class="ind-panel active" id="ip-construction">
+    <div class="ind-images-grid reveal">
+      <img class="ind-img-main" src="https://images.unsplash.com/photo-1590725121839-892b458a74fe?w=900&auto=format&fit=crop&q=80" alt="Industrial facility">
+      <img class="ind-img-sub" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=80" alt="Commercial building">
+      <img class="ind-img-sub" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=500&auto=format&fit=crop&q=80" alt="Manufacturing plant">
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="eyebrow">Construction &amp; Industrial</div>
+      <h3 class="ind-headline">Construction, HVAC, Manufacturing &amp; Industrial</h3>
+      <p class="ind-desc">I help construction companies, HVAC contractors, manufacturers, and industrial service businesses generate consistent project enquiries and commercial leads. I understand long sales cycles, B2B decision-makers, and high-ticket contracts.</p>
+      <ul class="ind-clients-list">
+        <li>Commercial construction companies &amp; contractors</li>
+        <li>HVAC installation &amp; maintenance businesses</li>
+        <li>Manufacturing &amp; engineering firms</li>
+        <li>Industrial equipment &amp; materials suppliers</li>
+        <li>Warehouse &amp; logistics facility operators</li>
+        <li>Fit-out &amp; refurbishment contractors</li>
+        <li>Specialist trade &amp; sub-contractor businesses</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ind-panel" id="ip-healthcare">
+    <div class="ind-images-grid reveal">
+      <img class="ind-img-main" src="https://images.unsplash.com/photo-1588776814546-1ffedbe47adc?w=900&auto=format&fit=crop&q=80" alt="Modern dental clinic">
+      <img class="ind-img-sub" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=500&auto=format&fit=crop&q=80" alt="Dental consultation">
+      <img class="ind-img-sub" src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=500&auto=format&fit=crop&q=80" alt="Dental treatment">
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="eyebrow">Dental &amp; Healthcare</div>
+      <h3 class="ind-headline">Dental Clinics &amp; Private Healthcare Practices</h3>
+      <p class="ind-desc">I help dental clinics and private healthcare practices generate a steady flow of qualified patient enquiries and appointment bookings for high-value treatments. I understand patient psychology, treatment decision timelines, and compliant advertising.</p>
+      <ul class="ind-clients-list">
+        <li>Dental implant treatment campaigns</li>
+        <li>Invisalign &amp; orthodontic enquiry generation</li>
+        <li>Cosmetic dentistry &amp; smile makeover bookings</li>
+        <li>Private dental plan patient acquisition</li>
+        <li>Teeth whitening &amp; aesthetic treatment enquiries</li>
+        <li>Multi-site dental group patient acquisition</li>
+        <li>Private GP &amp; specialist clinic enquiry generation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-white" id="services">
+  <div class="section-header-split">
+    <div class="reveal">
+      <div class="eyebrow">What I Offer</div>
+      <h2 class="section-headline">Performance Marketing Services</h2>
+      <p class="section-sub">Personally delivered and optimised. No outsourcing. No hand-offs. No junior media buyers.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon-wrap">📢</div>
+      <div class="service-title">Meta Ads Management</div>
+      <p class="service-desc">Full-funnel Facebook and Instagram advertising strategy, campaign build, creative direction, audience targeting, and continuous optimisation focused on enquiry volume and qualified cost per lead.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon-wrap">🔍</div>
+      <div class="service-title">Google Ads Management</div>
+      <p class="service-desc">Search, Display, and Performance Max campaigns designed to capture high-intent buyers actively searching for your services. Structured for qualified traffic, not inflated click volume that wastes budget.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon-wrap">🏗</div>
+      <div class="service-title">Landing Page Systems</div>
+      <p class="service-desc">Conversion-optimised landing pages and lead funnels built specifically for your campaigns. Designed to qualify visitors before they submit, delivering better enquiries and saving your team's time.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon-wrap">📈</div>
+      <div class="service-title">Lead Generation Strategy</div>
+      <p class="service-desc">End-to-end strategy covering ad creative, audience segmentation, funnel design, CRM integration, and lead quality filtering — aligned precisely to your sales process and ideal client profile.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon-wrap">🔄</div>
+      <div class="service-title">Retargeting &amp; Nurture</div>
+      <p class="service-desc">Re-engagement campaigns targeting warm audiences who haven't yet enquired. Systematic follow-up sequences to increase conversion from your existing traffic and reduce wasted ad spend.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon-wrap">📊</div>
+      <div class="service-title">Reporting &amp; Strategy Calls</div>
+      <p class="service-desc">Clear, jargon-free performance reporting with direct commentary on results, tests, and strategic direction. Monthly strategy calls directly with Piyush — no account manager relay involved.</p>
+      <span class="service-tag">Construction · Dental</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section-sm section-light">
+  <div class="section-header reveal" style="margin-bottom:2.25rem;">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="section-headline">From First Call to Qualified Enquiries</h2>
+    <p class="section-sub">A structured, transparent process — no surprises, no hand-offs, no wasted time.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-top-bar"></div>
+      <div class="step-num" data-n="1">Strategy Call</div>
+      <div class="step-title">Understand Your Business</div>
+      <p class="step-desc">We review your current marketing, sales process, target customer, and advertising budget to assess fit and identify the highest-impact opportunities.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-top-bar"></div>
+      <div class="step-num" data-n="2">Campaign Blueprint</div>
+      <div class="step-title">Build Your System</div>
+      <p class="step-desc">I design a custom campaign strategy, create landing pages, write ad copy, build targeting, and set up tracking before a single pound is spent on ads.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-top-bar"></div>
+      <div class="step-num" data-n="3">Launch &amp; Optimise</div>
+      <div class="step-title">Generate Enquiries</div>
+      <p class="step-desc">Campaigns go live with daily monitoring and systematic A/B testing. I optimise continuously for enquiry quality and cost efficiency, not surface-level vanity metrics.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-top-bar"></div>
+      <div class="step-num" data-n="4">Report &amp; Scale</div>
+      <div class="step-title">Review &amp; Grow</div>
+      <p class="step-desc">Regular reporting and direct strategy calls keep you fully informed. As performance stabilises, we identify scale opportunities to grow enquiry volume further.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DIRECT -->
+<section class="section section-white" id="why-direct">
+  <div class="direct-grid">
+    <div class="reveal">
+      <div class="eyebrow">Why Choose Direct</div>
+      <h2 class="section-headline">You Work With Me.<br>Not an Agency.</h2>
+      <div class="direct-text">
+        <p>Most marketing agencies assign your account to a junior media buyer, rotate account managers every few months, and layer fees on top of your ad spend. You rarely speak with the person actually managing your campaigns.</p>
+        <p>When you work with me, every optimisation decision is made by the same consultant who built your strategy, wrote your ads, and understands your business. No hand-offs. No delays.</p>
+      </div>
+      <div class="vs-card" style="margin-top:2rem;">
+        <div class="vs-header-row">
+          <div class="vs-col-head vs-col-agency">✗ Marketing Agency</div>
+          <div class="vs-col-head vs-col-pk">✓ Piyush Kataria</div>
+        </div>
+        <div class="vs-body-row">
+          <div class="vs-cell"><span class="vs-x">✗</span> Account manager relay</div>
+          <div class="vs-cell pk-cell"><span class="vs-check">✓</span> Direct access to Piyush</div>
+        </div>
+            <div class="vs-body-row">
+          <div class="vs-cell"><span class="vs-x">✗</span> Generic industry playbooks</div>
+          <div class="vs-cell pk-cell"><span class="vs-check">✓</span> Industry-specific strategy</div>
+        </div>
+        <div class="vs-body-row">
+          <div class="vs-cell"><span class="vs-x">✗</span> Vanity metric reporting</div>
+          <div class="vs-cell pk-cell"><span class="vs-check">✓</span> Qualified enquiry focus</div>
+        </div>
+        <div class="vs-body-row">
+          <div class="vs-cell"><span class="vs-x">✗</span> No performance commitment</div>
+          <div class="vs-cell pk-cell"><span class="vs-check">✓</span> Qualified Enquiry Guarantee</div>
+        </div>
+      </div>
+    </div>
+    <div class="direct-photo-wrap reveal reveal-d1">
+      <img class="direct-photo"
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&auto=format&fit=crop&q=80"
+        alt="Piyush Kataria - Performance Marketing Consultant">
+      <div class="direct-photo-badge">
+        <div class="direct-badge-main">Every campaign<br>personally managed by</div>
+        <div class="direct-badge-name">Piyush Kataria</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="reveal">
+    <div class="eyebrow">Client Feedback</div>
+    <h2 class="section-headline">What Clients Say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"We'd tried two agencies before Piyush. Both promised results and delivered impressions. Within the first 60 days of working directly with him, we had more qualified project enquiries than in the previous six months combined."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JM</div>
+        <div>
+          <div class="testimonial-name">James M.</div>
+          <div class="testimonial-role">Director, Commercial HVAC Contractor · UK</div>
+        </div>
+        <div class="testimonial-industry-badge">🏗 Construction</div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-d1">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"Our implant campaigns were burning budget with no clear ROI. Piyush rebuilt everything from scratch — new landing pages, new targeting, new creative. Our cost per consultation dropped from £180 to £52 within 8 weeks."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SP</div>
+        <div>
+          <div class="testimonial-name">Dr. Sarah P.</div>
+          <div class="testimonial-role">Principal Dentist, Private Clinic · Australia</div>
+        </div>
+        <div class="testimonial-industry-badge">🦷 Dental</div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-d2">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"What I value most is that I'm always talking to the person who knows my campaigns inside out. No waiting for an account manager to relay information. Piyush is genuinely invested in our growth, not just our retainer."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RK</div>
+        <div>
+          <div class="testimonial-name">Robert K.</div>
+          <div class="testimonial-role">MD, Industrial Equipment Supplier · Germany</div>
+        </div>
+        <div class="testimonial-industry-badge">🏭 Manufacturing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section section-light" id="guarantee">
+  <div style="max-width:880px;">
+    <div class="reveal">
+      <div class="eyebrow">Performance Commitment</div>
+      <h2 class="section-headline">Qualified Enquiry Guarantee</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem;">My singular focus is generating enquiries that have genuine interest in your product or service. This is the commitment I make to eligible clients.</p>
+    </div>
+    <div class="guarantee-wrap reveal">
+      <div class="guarantee-header">
+        <div class="guarantee-header-text">
+          <h3>My Focus Is Not Vanity Metrics</h3>
+          <p>Impressions, clicks, and reach are not business outcomes. Qualified enquiries are.</p>
+        </div>
+        <div class="guarantee-badge-wrap">
+          <span class="guarantee-badge-icon">🛡️</span>
+          <div class="guarantee-badge-text">Performance<br>Guarantee</div>
+        </div>
+      </div>
+      <div class="guarantee-body">
+        <p>I do not run campaigns to inflate reporting dashboards or impress with reach numbers. Every campaign is built around your sales pipeline, your ideal client profile, and the types of enquiries your team can realistically convert into paying customers.</p>
+        <p>I measure success the same way you do: qualified business enquiries from people with genuine interest — not impressions, clicks, or cost per click metrics that mean nothing to your bottom line.</p>
+        <div class="guarantee-commit">
+          <p><strong>For eligible clients who meet the required advertising budget, sales process, and follow-up requirements:</strong><br><br>
+          If I am unable to generate a minimum agreed number of qualified enquiries within the campaign period, I will continue optimising and working on the account at <strong>no additional management fee</strong> until the agreed target is achieved.</p>
+        </div>
+        <p>This is not a promotional promise. It is a professional commitment rooted in confidence in my process — and in the quality of clients I choose to work with. I only accept engagements where I genuinely believe I can deliver.</p>
+        <div class="guarantee-disclaimer-box">
+          <p><strong>Disclaimer &amp; Eligibility:</strong> The Qualified Enquiry Guarantee applies only to clients meeting all qualifying criteria including: minimum monthly advertising budget as agreed at onboarding; a proven sales process with a qualified team capable of following up enquiries within business hours; a competitive service offering appropriate for the target market; and adherence to the recommended follow-up process. Results are influenced by industry competitiveness, seasonal demand, offer quality, and follow-up speed. The guarantee covers continued management fee waiver during an extended optimisation period and does not constitute a monetary refund. Full guarantee terms are agreed in writing prior to engagement commencement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section section-white" id="results">
+  <div class="section-header-split">
+    <div class="reveal">
+      <div class="eyebrow">Case Studies</div>
+      <h2 class="section-headline">Results Across Construction &amp; Healthcare</h2>
+      <p class="section-sub">Real campaigns. Real enquiries. Performance across the UK, US, Europe, and Australia.</p>
+    </div>
+    <a href="#" class="btn-secondary reveal" onclick="openModal(event)">Discuss Your Industry</a>
+  </div>
+  <div class="results-grid">
+    <div class="result-card reveal">
+      <div class="result-industry-tag">🏗 HVAC Contractor · UK</div>
+      <div class="result-num">£38</div>
+      <div class="result-num-sub">Average cost per qualified enquiry</div>
+      <p class="result-desc">Generated 120+ qualified installation enquiries over 90 days for a residential and commercial HVAC contractor. High-intent keyword targeting within a 30-mile service radius.</p>
+      <span class="result-platform">Google Ads</span>
+    </div>
+    <div class="result-card reveal reveal-d1">
+      <div class="result-industry-tag">🦷 Dental Implants · Australia</div>
+      <div class="result-num">4.2×</div>
+      <div class="result-num-sub">Return on ad spend (ROAS)</div>
+      <p class="result-desc">Dental implant campaign producing consistent consultation bookings at a cost delivering 4.2× ROAS after treatment conversion tracking. Full-funnel Meta campaign with dedicated landing page.</p>
+      <span class="result-platform">Meta Ads</span>
+    </div>
+    <div class="result-card reveal reveal-d2">
+      <div class="result-industry-tag">🏭 Manufacturing · United States</div>
+      <div class="result-num">67%</div>
+      <div class="result-num-sub">Reduction in cost per lead vs. prior agency</div>
+      <p class="result-desc">Industrial equipment manufacturer switched from a generalist agency. Within 60 days, cost per qualified B2B enquiry reduced by 67% with significantly higher lead quality confirmed by the sales team.</p>
+      <span class="result-platform">Google Ads · Meta Ads</span>
+    </div>
+    <div class="result-card reveal">
+      <div class="result-industry-tag">🦷 Cosmetic Dentistry · UK</div>
+      <div class="result-num">£52</div>
+      <div class="result-num-sub">Cost per Invisalign consultation booked</div>
+      <p class="result-desc">Consistently generating Invisalign and cosmetic dentistry consultations at sub-£60 CPL through targeted Meta campaigns paired with an optimised appointment booking funnel.</p>
+      <span class="result-platform">Meta Ads</span>
+    </div>
+    <div class="result-card reveal reveal-d1">
+      <div class="result-industry-tag">🏗 Commercial Construction · Europe</div>
+      <div class="result-num">34</div>
+      <div class="result-num-sub">Qualified project enquiries in 60 days</div>
+      <p class="result-desc">B2B Google Ads targeting property developers and project managers across three European markets. 34 qualified project enquiries resulting in 6 commercial contracts being actively pursued.</p>
+      <span class="result-platform">Google Ads</span>
+    </div>
+    <div class="result-card reveal reveal-d2">
+      <div class="result-industry-tag">🦷 Multi-Site Dental Group · UK</div>
+      <div class="result-num">3×</div>
+      <div class="result-num-sub">Increase in monthly new patient enquiries</div>
+      <p class="result-desc">Scaled paid media across 4 clinic locations, tripling inbound new patient enquiries within 4 months through audience-specific campaigns and clinic-level landing pages.</p>
+      <span class="result-platform">Meta Ads · Google Ads</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="reveal">
+      <h2 class="cta-title">Ready to Generate More Qualified Enquiries?</h2>
+      <p class="cta-sub">Book a complimentary 45-minute strategy call. I'll review your current marketing, identify the biggest lead generation opportunities, and outline exactly what a direct engagement could look like for your business — with no obligation.</p>
+    </div>
+    <div class="cta-actions reveal reveal-d1">
+      <a href="#" class="btn-white" onclick="openModal(event)">Book a Strategy Call &rarr;</a>
+      <p class="cta-note">No obligation. No sales pressure.<br>No agency pitch deck.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">Piyush <span>Kataria</span></a>
+      <p class="footer-brand-text">Independent Performance Marketing Consultant specialising in Construction, Manufacturing, and Dental businesses. Personally managing campaigns across the UK, US, Europe, and Australia.</p>
+    </div>
+    <div>
+      <div class="footer-col-head">Services</div>
+      <ul class="footer-col-links">
+        <li><a href="#services">Meta Ads Management</a></li>
+        <li><a href="#services">Google Ads Management</a></li>
+        <li><a href="#services">Landing Page Systems</a></li>
+        <li><a href="#services">Lead Generation Strategy</a></li>
+        <li><a href="#services">Retargeting &amp; Nurture</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-head">Industries</div>
+      <ul class="footer-col-links">
+        <li><a href="#industries">Construction &amp; HVAC</a></li>
+        <li><a href="#industries">Manufacturing &amp; Industrial</a></li>
+        <li><a href="#industries">Dental Clinics</a></li>
+        <li><a href="#industries">Healthcare Practices</a></li>
+        <li><a href="#guarantee">Performance Guarantee</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-head">Get Started</div>
+      <ul class="footer-col-links">
+        <li><a href="#" onclick="openModal(event)">Book a Strategy Call</a></li>
+        <li><a href="#results">View Case Studies</a></li>
+        <li><a href="#about">About Piyush</a></li>
+        <li><a href="#guarantee">Enquiry Guarantee</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Piyush Kataria. All rights reserved. Independent Performance Marketing Consultant.</p>
+    <div class="footer-geo">
+      <span class="footer-geo-chip">🇬🇧 UK</span>
+      <span class="footer-geo-chip">🇺🇸 US</span>
+      <span class="footer-geo-chip">🇪🇺 EU</span>
+      <span class="footer-geo-chip">🇦🇺 AU</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Book a Strategy Call</div>
+    <p class="modal-sub">Tell me about your business and I'll be in touch within one business day to schedule your complimentary 45-minute strategy session.</p>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Your first name"></div>
+      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Your last name"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Business Name</label><input class="form-input" type="text" placeholder="Your company name"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="your@email.com"></div>
+    <div class="form-group"><label class="form-label">Phone Number</label><input class="form-input" type="tel" placeholder="+44 / +1 / country code + number"></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Industry</label>
+        <select class="form-select">
+          <option value="">Select industry</option>
+          <option>Construction &amp; HVAC</option>
+          <option>Manufacturing &amp; Industrial</option>
+          <option>Dental Clinic</option>
+          <option>Healthcare Practice</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Monthly Ad Budget</label>
+        <select class="form-select">
+          <option value="">Select budget</option>
+          <option>£1,000 – £2,500 / month</option>
+          <option>£2,500 – £5,000 / month</option>
+          <option>£5,000 – £10,000 / month</option>
+          <option>£10,000+ / month</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Current challenge or goal (optional)</label>
+      <textarea class="form-textarea" placeholder="Tell me about your current marketing challenges or what you're hoping to achieve..."></textarea>
+    </div>
+    <button class="btn-primary modal-submit" onclick="submitModal()">Submit Enquiry &rarr;</button>
+  </div>
+</div>
+
+<script>
+// Nav scroll shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hero switch
+function switchHero(ind, btn) {
+  document.querySelectorAll('.switcher-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const imgC = document.getElementById('heroImgC');
+  const imgH = document.getElementById('heroImgH');
+  const tag  = document.getElementById('heroImgTag');
+  const h    = document.getElementById('heroH');
+  const sub  = document.getElementById('heroSub');
+  if (ind === 'construction') {
+    imgC.classList.replace('hidden','visible');
+    imgH.classList.replace('visible','hidden');
+    tag.innerHTML = 'Construction &amp; Industrial';
+    h.innerHTML = '<span class="line-block">Qualified Leads.</span><span class="line-block">Predictable Growth.</span><span class="line-block accent">Direct Consultant Support.</span>';
+    sub.textContent = 'I help construction companies, HVAC businesses, manufacturers, and industrial firms generate qualified project enquiries through Meta Ads, Google Ads, and conversion-focused lead generation systems. You work directly with me.';
+  } else {
+    imgH.classList.replace('hidden','visible');
+    imgC.classList.replace('visible','hidden');
+    tag.innerHTML = 'Dental &amp; Healthcare';
+    h.innerHTML = '<span class="line-block">More Patients.</span><span class="line-block">Higher-Value Treatments.</span><span class="line-block accent">Direct Consultant Support.</span>';
+    sub.textContent = 'I help dental clinics and healthcare practices generate a consistent flow of qualified patient enquiries and appointment bookings for implants, Invisalign, cosmetic dentistry, and more. You work directly with me from strategy to results.';
+  }
+}
+
+// Industry panels
+function switchIndustry(ind, btn) {
+  document.querySelectorAll('.ind-tab-btn').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ind-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('ip-' + ind).classList.add('active');
+}
+
+// Mobile nav
+function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+// Modal
+function openModal(e) { if(e) e.preventDefault(); document.getElementById('modalBg').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal() { document.getElementById('modalBg').classList.remove('open'); document.body.style.overflow=''; }
+function closeModalOnBg(e) { if(e.target===document.getElementById('modalBg')) closeModal(); }
+function submitModal() { alert('Thank you for your enquiry. Piyush will be in touch within one business day to schedule your strategy call.'); closeModal(); }
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Animated number counter
+function animateCount(el) {
+  const target = parseInt(el.getAttribute('data-target'), 10);
+  if (target === 0) { el.textContent = '0'; return; }
+  const duration = 1600;
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCount(e.target); counterObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-up').forEach(el => counterObs.observe(el));
+
+// Service icon colour on hover
+document.querySelectorAll('.service-card').forEach(card => {
+  const icon = card.querySelector('.service-icon-wrap');
+  card.addEventListener('mouseenter', () => { if(icon) icon.style.filter = 'brightness(0) invert(1)'; });
+  card.addEventListener('mouseleave', () => { if(icon) icon.style.filter = ''; });
+});
+</script>
+</body>
+</html>
